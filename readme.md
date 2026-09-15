@@ -1,10 +1,24 @@
-# 99Tech Code Challenge #1 #
+## Problem 1
+3 solutions provided [here](src/problem1/sum_to_n.js)
 
-Note that if you fork this repository, your responses may be publicly linked to this repo.  
-Please submit your application along with the solutions attached or linked.   
+## Problem 2
 
-It is important that you minimally attempt the problems, even if you do not arrive at a working solution.
+[Documentation](src/problem2/README.md) · [Live demo](https://currency-swap-coding-challenge.vercel.app/)
 
-## Submission ##
-You can either provide a link to an online repository, attach the solution in your application, or whichever method you prefer.
-We're cool as long as we can view your solution without any pain.
+### Features
+
+- Searchable token selection with icons
+- Exchange rates from the Switcheo price API
+- Input validation and responsive mobile-first UI
+- Mock swap with pending, success, and error states
+
+### Test coverage
+
+- 37 unit tests for prices, conversion, validation, and mock swaps
+- Manual responsive and interaction checks
+
+### Tech stack
+
+- Vite, React, TypeScript
+- Tailwind CSS and shadcn/ui
+- TanStack Query and Vitest
