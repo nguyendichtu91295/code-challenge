@@ -2,6 +2,8 @@
 
 Mobile-first currency swap demo built with Vite, React, TypeScript, shadcn/ui, Tailwind CSS and TanStack Query.
 
+Production: https://currency-swap-coding-challenge.vercel.app
+
 ## Development
 
 Requires Node.js 24 LTS and npm. Run from `src/problem2`:

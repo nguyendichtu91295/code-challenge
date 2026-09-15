@@ -6,9 +6,9 @@ task-006-git-connected-production-deployment
 
 ## Status
 
-RUNNING
+DONE
 
-<!-- STATUS: RUNNING -->
+<!-- STATUS: DONE -->
 
 ## Depends On
 

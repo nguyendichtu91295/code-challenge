@@ -20,3 +20,12 @@ Browser: Google Chrome on macOS
 | 200% zoom | PASS | Content remains in document flow and scrollable; no fixed-height app container clips the form. |
 
 Browser/E2E automation was intentionally skipped. Vitest covers price normalization, validation, quote math, icon resolution and mock exchange behavior.
+
+## Hosted verification
+
+Production URL: https://currency-swap-coding-challenge.vercel.app
+
+- PASS: public HTTPS request returned HTTP 200 without a Vercel login.
+- PASS: hosted ETH/USDC prices and icons loaded with the historical date visible.
+- PASS: `0.5 ETH` produced `823.06707 USDC`; pending completed with the demo/no-assets-moved success message.
+- PASS: the production deployment uses the Git-connected `main` branch and the configured `src/problem2` root.
