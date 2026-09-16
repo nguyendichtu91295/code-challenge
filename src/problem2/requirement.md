@@ -42,3 +42,9 @@ References: [Vercel login](https://vercel.com/docs/cli/login), [Vercel deploymen
 
 - The supplied API provides prices only; no swap execution endpoint is provided.
 - Mock exchange: local asynchronous function called through `useMutation`, with a short delay, pending state, success summary, and controllable failure for testing. No backend or real asset transfer.
+
+## Amount input behavior
+
+- Restrict the send-amount field to digits and at most one decimal separator (`.` or `,`); block letters, signs, exponent notation, symbols, and extra separators while typing or pasting.
+- Allow natural editing states such as empty input, `.`, `.12`, `12.`, `,12`, and `12,`; incomplete values remain invalid for submission until they form a positive number.
+- Keep the existing decimal-comma normalization and positive finite amount validation.
