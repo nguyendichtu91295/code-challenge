@@ -22,3 +22,7 @@
 - Vite, React, TypeScript
 - Tailwind CSS and shadcn/ui
 - TanStack Query and Vitest
+
+## Problem 3
+The code review findings is [here](src/problem3/findings.md)
+Refactored version is [here](src/problem3/refactored.tsx)
