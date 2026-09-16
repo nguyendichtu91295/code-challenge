@@ -29,3 +29,14 @@ Production URL: https://currency-swap-coding-challenge.vercel.app
 - PASS: hosted ETH/USDC prices and icons loaded with the historical date visible.
 - PASS: `0.5 ETH` produced `823.06707 USDC`; pending completed with the demo/no-assets-moved success message.
 - PASS: the production deployment uses the Git-connected `main` branch and the configured `src/problem2` root.
+
+## Numeric-only amount input
+
+Date: 2026-09-16
+
+Browser: Google Chrome on macOS
+
+- PASS: `.12` remained visible and calculated as `0.12`; confirmation became available.
+- PASS: typing `a$e-+` did not change the existing `.12` value or quote.
+- PASS: `,12` remained visible and produced the same quote as `.12`.
+- PASS: pasting `99abc` did not replace the existing valid value.

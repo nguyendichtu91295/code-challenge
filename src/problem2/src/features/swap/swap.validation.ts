@@ -1,5 +1,9 @@
 import type { Quote, Result, Token } from './swap.types'
 
+export function isEditableAmount(input: string): boolean {
+  return /^\d*(?:[.,]\d*)?$/.test(input)
+}
+
 export function validateAmount(input: string): Result<number> {
   const normalized = input.trim().replace(',', '.')
   if (!normalized) return { error: 'Enter an amount to continue.' }

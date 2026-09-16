@@ -6,9 +6,9 @@ task-007-numeric-only-amount-input
 
 ## Status
 
-PENDING
+DONE
 
-<!-- STATUS: PENDING -->
+<!-- STATUS: DONE -->
 
 ## Depends On
 

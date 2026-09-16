@@ -2,7 +2,7 @@ import { useState, type FormEvent } from 'react'
 import { ArrowDown, ArrowRight, Check, CircleAlert, Info, LoaderCircle, RefreshCw } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useSwap } from '../hooks/useSwap'
-import { calculateQuote, validateAmount } from '../swap.validation'
+import { calculateQuote, isEditableAmount, validateAmount } from '../swap.validation'
 import { defaultPair, formatAmount, formatPriceDate, tokenName } from '../swap.utils'
 import type { Token } from '../swap.types'
 import { TokenPicker } from './TokenPicker'
@@ -34,6 +34,11 @@ export function SwapForm({ tokens, loading, fetching, offline, error, onRetry }:
   const dates = [...new Set([from?.date, to?.date].filter((date): date is string => !!date).map(formatPriceDate))]
 
   function updatePair(next: [string, string]) { setPair(next); swap.reset() }
+  function handleAmountChange(nextAmount: string) {
+    if (!isEditableAmount(nextAmount)) return
+    setAmount(nextAmount)
+    swap.reset()
+  }
   function handleSubmit(event: FormEvent) {
     event.preventDefault()
     setTouched(true)
@@ -55,7 +60,7 @@ export function SwapForm({ tokens, loading, fetching, offline, error, onRetry }:
         <input id="send-amount" aria-label="Amount to send" className="amount-input" inputMode="decimal" autoComplete="off" spellCheck={false}
           placeholder="0.00" value={amount} disabled={pending || blocked} aria-invalid={touched && !!inputError}
           aria-describedby={touched && inputError ? 'amount-error' : undefined}
-          onBlur={() => setTouched(true)} onChange={event => { setAmount(event.target.value); swap.reset() }} />
+          onBlur={() => setTouched(true)} onChange={event => handleAmountChange(event.target.value)} />
         <TokenPicker tokens={tokens} value={fromSymbol} otherValue={toSymbol} side="send" disabled={pending || blocked}
           onChange={symbol => updatePair([symbol, toSymbol])} />
       </div>

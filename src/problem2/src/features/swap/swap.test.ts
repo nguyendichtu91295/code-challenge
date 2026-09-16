@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { calculateQuote, validateAmount } from './swap.validation'
+import { calculateQuote, isEditableAmount, validateAmount } from './swap.validation'
 import { defaultPair, formatAmount, normalizePrices, tokenIconUrl } from './swap.utils'
 
 const date = '2023-08-29T07:10:40.000Z'
@@ -32,6 +32,12 @@ describe('price normalization', () => {
 })
 
 describe('amounts and quotes', () => {
+  it.each(['', '0', '12', '.', '.12', '12.', '12.34', ',', ',12', '12,', '12,34'])('allows %j while editing', value => {
+    expect(isEditableAmount(value)).toBe(true)
+  })
+  it.each(['a', '1a', '-1', '+1', '1e3', '1 2', ' 1', '1 ', '$1', '1.2.3', '1,2,3', '1.2,3', '1,2.3'])('blocks %j while editing', value => {
+    expect(isEditableAmount(value)).toBe(false)
+  })
   it.each(['', ' ', '0', '-1', '1e3', 'abc', '1,2,3', '1.2.3', '+1', 'Infinity'])('rejects %j', value => {
     expect(validateAmount(value).error).toBeTruthy()
   })
