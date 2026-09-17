@@ -1,3 +1,6 @@
+/**
+ * A explicit typings for Blockchain 
+ */
 type Blockchain =
   | "Osmosis"
   | "Ethereum"
@@ -5,19 +8,31 @@ type Blockchain =
   | "Zilliqa"
   | "Neo";
 
+/** 
+ * Declare this once and extends later
+ */
 interface WalletBalance {
   currency: string;
   amount: number;
   blockchain: Blockchain;
 }
 
+/**
+ * Formatted type extend from WalletBalance
+ */
 interface FormattedWalletBalance extends WalletBalance {
   formatted: string;
   priority: number;
 }
 
+/**
+ * Assuming this BoxProps imported from somewhere. If not this BoxProps is not defined
+ */
 interface Props extends BoxProps {}
 
+/** 
+ * put this function outside so that rerender wont declare again
+ */
 const getPriority = (blockchain: Blockchain): number => {
   switch (blockchain) {
     case "Osmosis":
@@ -40,6 +55,9 @@ const WalletPage = (props: Props) => {
   const prices = usePrices();
 
   const formattedBalances = useMemo<FormattedWalletBalance[]>(() => {
+    /**
+     * combined formatted + priority mapping
+     */
     return balances
       .map((balance: WalletBalance) => ({
         ...balance,
@@ -48,11 +66,11 @@ const WalletPage = (props: Props) => {
       }))
       .filter(
         (balance: FormattedWalletBalance) =>
-          balance.priority > -99 && balance.amount > 0,
+          balance.priority > -99 && balance.amount > 0, // this 2 condition can be combine into once
       )
       .sort(
         (lhs: FormattedWalletBalance, rhs: FormattedWalletBalance) =>
-          rhs.priority - lhs.priority,
+          rhs.priority - lhs.priority, // leverage 1 | -1 | 0 return value to sort
       );
   }, [balances]);
 
@@ -73,6 +91,7 @@ const WalletPage = (props: Props) => {
 
   return (
     <div {...rest}>
+      {/* remember to render children here (if needed in future) */}
       {children}
       {rows}
     </div>

@@ -23,6 +23,7 @@ List out the computational inefficiencies and anti-patterns found in the code bl
 - `blockchain` type is not defined in either `WalletBalance` and `FormattedWalletBalance`
 - `FormattedWalletBalance` should extend from `WalletBalance`
 - `children` is declared but not rendered. If I render any children inside `WalletPage` then it will be missed
+- A small preference is `useMemo` better have `useMemo<Type>`
 
 ## `getPriority`
 
@@ -46,8 +47,10 @@ List out the computational inefficiencies and anti-patterns found in the code bl
 - `prices[balance.currency]` could be undefined and produce `NaN` result
 
 ## `sortedBalances` memo function
+
 - Cannot find variable `lhsPriority` and should be replaced with `balancePriority`
 - consider make `getPriority` call once and make it to a field called `priority` instead of calling `getPriority` in filter and sort callback
 - `sortedBalances` has `prices` as dependency but it's unneccessary because `prices` was not used in this `useMemo`
-- `sortedBalances` sort function better to return 0 for case `lhs` equal `rhs`
-- The filter function is checking `balance.amount <= 0`. If the intend of this function is to check if balance exist then need to check `> 0`
+- `sortedBalances` sort function not returning 0 for case `lhs` equal `rhs`. Use `leftPriority - rightPriority`
+- The filter function is checking `balance.amount <= 0`. If the intend of this function is to check if balance exist then need to check `> 0`.
+- The check `lhsPriority > -99` and `balance.amount` can be combine into once for readability
